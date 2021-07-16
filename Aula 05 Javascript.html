@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <script>
+            
+            function Pessoa (nome, idade, color) {
+                this.nome = nome;
+                this.idade = idade;
+                this.color = color;
+            }
+            
+            let option = 1
+            let lista = []
+            let pessoa
+            let nome, idade, color;
+
+            do {
+                
+                nome = prompt("Nome da pessoa:")
+                idade = prompt("Idade da pessoa")
+                color = prompt("Cor favorita:")
+                pessoa = new Pessoa(nome, idade, color)
+                lista.push(pessoa)
+                option = prompt("Deseja acrescentar mais um cadastro?: 1 para Sim - outro para não")
+            
+            } while (option == 1) 
+            
+            
+            lista.forEach((obj) => {
+                console.log("name:", obj.nome);
+                console.log("idade:", obj.idade);
+                console.log("color fav:", obj.color);
+                console.log();
+                });
+            
+            function maisVelho(lista) {
+                let maisViejo= lista[0]
+                lista.forEach((obj) => {
+                    if (maisViejo.idade < obj.idade) {
+                        maisViejo = obj;
+                    }
+                })               
+                return maisViejo;
+            }
+            
+            console.log(`A pessoa mais velha é${maisVelho(lista).nome} e a sua idade é ${maisVelho(lista).idade}`);
+
+        </script>
+    </body>
+</html>
