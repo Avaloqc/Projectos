@@ -3,12 +3,60 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>AULA13 - EXERCICIO 5</title>
+    <title>AULA 13 - EXERCICIO 5</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <!--link rel='stylesheet' type='text/css' media='screen' href='main.css'-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
+    <script>
+        //let cepreq = new FormData(document.querySelector('#form'))
+        function getCep () {
+            var cep = document.getElementById('CEP').value
+            return cep
+        }
+        var cepInfo
+        function buscaCep (cep) {
+            let urlcustom = 'https://viacep.com.br/ws/' +cep+'/json/'
+            fetch (urlcustom).then(resp => resp.json())
+            .then(data => {  
+                cepInfo = data;
+                console.log(cepInfo)
+                preencherAuto(cepInfo)
+                })
+        }
+
+        function preencherAuto (cepInf) {
+            console.log(cepInf.uf)
+            console.log(cepInf.localidade)
+            console.log(cepInf.bairro)
+            console.log(cepInf.logradouro)
+            /*document.getElementById('estado').value = cepInf.uf
+            document.getElementById('cidade').value = cepInf.localidade
+            document.getElementById('bairro').value = cepInf.bairro
+            document.getElementById('logradouro').value = cepInf.logradouro*/
+            $(document).ready(
+            function() 
+            {
+                $('#estado').val(cepInfo.uf)
+                $('#cidade').val(cepInfo.localidade)
+                $('#bairro').val(cepInfo.bairro)
+                $('#logradouro').val(cepInfo.logradouro)
+            })
+        }
+    </script>
+
 </head>
 <body>
     
+    <form id="form" class="form">
+        Endereço: <br>
+        CEP: <input type="text" name="CEP" id="CEP">
+        <input type="button" onclick="buscaCep(getCep())" value="Buscar"><br>
+        Estado: <input type="text" name="estado" id="estado"><br>
+        Cidade: <input type="text" name="cidade" id="cidade"><br>
+        Bairro: <input type="text" name="bairro" id="bairro"><br>
+        Logradouro: <input type="text" name="logradouro" id="logradouro"><br>
+        Número: <input type="text" name="Número"><br>
+    </form>
+
 </body>
 </html>
