@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script>
-    
-        function Pessoa (nome, idade, color) {
-            this.nome = nome;
-            this.idade = idade;
-            this.color = color;
-        }
-        
-        let lista = []
-        
-        function maisVelho(lista) {
-            let maisViejo= lista[0]
-            lista.forEach((obj) => {
-            if (maisViejo.idade < obj.idade) {
-            maisViejo = obj;
-            }})               
-            return maisViejo;
-        }
-        
-        function cadastrar (lista) { 
-            let a = document.getElementById('Nome')
-            let b = document.getElementById('Idade')
-            let c = document.getElementById('Cor favorita')
-            let pessoa = new Pessoa (a.value, b.value, c.value)
-            lista.push(pessoa)
-            printar()
-        }
-
-        function printar ()  {
-            document.body.removeChild(document.querySelector("p"))
-            var data = document.createElement("p");
-            data.innerHTML = `A pessoa mais velha é ${maisVelho(lista).nome} e a sua idade é ${maisVelho(lista).idade}`
-            document.body.appendChild(data);
-        }
-
-
-    </script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>AULA10 - EXERCICIO 4</title>
+
+    <script>
+      function Pessoa (nome, idade, color) {
+        this.nome = nome;
+        this.idade = idade;
+        this.color = color;
+      }
+      
+      let lista = []
+      function maisVelho(lista) {
+        let maisViejo= lista[0]
+        lista.forEach((obj) => {
+        if (maisViejo.idade < obj.idade) {
+        maisViejo = obj;
+        }})               
+        return maisViejo;
+      }
+      
+      function cadastrar (lista) { 
+        let a = document.getElementById('Nome')
+        let b = document.getElementById('Idade')
+        let c = document.getElementById('Cor favorita')
+        let pessoa = new Pessoa (a.value, b.value, c.value)
+        lista.push(pessoa)
+        printar()
+      }
+
+      function printar ()  {
+        document.body.removeChild(document.querySelector("p"))
+        var data = document.createElement("p");
+        data.innerHTML = `A pessoa mais velha é ${maisVelho(lista).nome} e a sua idade é ${maisVelho(lista).idade}`
+        document.body.appendChild(data);
+      }
+    </script>
 
   </head>
   <body>
@@ -49,7 +45,6 @@
     <input type="form" id="Idade" value="Idade"/>
     <input type="form" id="Cor favorita" value="Cor favorita"/>
     <button onclick="cadastrar(lista)">cadastrar</button>
-    
     <p></p>
   </body>
 </html>
